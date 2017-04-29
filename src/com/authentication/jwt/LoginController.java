@@ -20,7 +20,7 @@ public class LoginController {
 	public static String HEADER_PREFIX = "Bearer ";
 	public static String JWT_TOKEN_HEADER_PARAM = "X-Authorization";
 	
-    @RequestMapping(value="/login", method=RequestMethod.POST, produces={MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value="/login", method=RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
     public @ResponseBody String login(HttpServletRequest http) throws Exception {
     	String value = http.getHeader(JWT_TOKEN_HEADER_PARAM);
     	String token = value.substring(HEADER_PREFIX.length(), value.length());

@@ -26,5 +26,7 @@ public class Employee {
 	public void setEncryptedPass(String encryptedPass) {
 		this.encryptedPass = encryptedPass;
 	}
-	
+	public Integer getId(){
+		return id;
+	}
 }
