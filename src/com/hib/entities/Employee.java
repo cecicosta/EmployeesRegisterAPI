@@ -1,19 +1,28 @@
 package com.hib.entities;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
 @Table(name = "employees")
 public class Employee {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+
+	private String id;
 	private String name;
 	private String encryptedPass;
+		
+	public Employee(){}
+	public Employee(String id, String name, String encryptedPass){
+		this.id = id;
+		this.name = name;
+		this.encryptedPass = encryptedPass;
+	}
 	public String getName() {
 		return name;
 	}
@@ -26,7 +35,21 @@ public class Employee {
 	public void setEncryptedPass(String encryptedPass) {
 		this.encryptedPass = encryptedPass;
 	}
-	public Integer getId(){
+	@Id
+	@Column(name = "employeeId")
+	public String getId(){
 		return id;
+	}
+	public void setId(String id){
+		this.id = id;
+	}
+
+	private Set<HourRegister> registers;
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+	public Set<HourRegister> getRegisters(){
+		return registers;
+	}
+	public void setRegisters(Set<HourRegister> registers){
+		this.registers = registers;
 	}
 }

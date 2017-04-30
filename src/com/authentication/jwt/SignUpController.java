@@ -1,10 +1,9 @@
 package com.authentication.jwt;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.json.JSONObject;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,26 +22,29 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class SignUpController {
 	public static String PASSWORD_HEADER_PARAM = "password";
 	public static String NAME_HEADER_PARAM = "username";
+	public static String ID_HEADER_PARAM = "id";
 	
     @RequestMapping(value="/signup", method=RequestMethod.POST, produces={MediaType.APPLICATION_JSON_VALUE})
-    public @ResponseBody String login(HttpServletRequest http) throws Exception {
+    public @ResponseBody void login(HttpServletRequest http, HttpServletResponse response) throws Exception {
     	
     	//TODO: Change to expect a base64 string encoded with a private key
+    	String id = http.getHeader(ID_HEADER_PARAM);
     	String name = http.getHeader(NAME_HEADER_PARAM);
     	String password = http.getHeader(PASSWORD_HEADER_PARAM);
     	//TODO: The password must be decoded with the application's private key 
     	
+    	if (name.isEmpty()) 
+            throw new IllegalArgumentException("Cannot create Access Token without id");
         if (name.isEmpty()) 
-            throw new IllegalArgumentException("Cannot create JWT Token without username");
+            throw new IllegalArgumentException("Cannot create Access Token without name");
         if (password.isEmpty()) 
-            throw new IllegalArgumentException("Cannot create JWT Token without password");
+            throw new IllegalArgumentException("Cannot create Access Token without password");
 
-   
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         session.beginTransaction();
         
-        Employee employee = new Employee();
+        Employee employee = new Employee(id, name,Base64Coder.encodeString(password) );
         employee.setName(name);
         employee.setEncryptedPass(Base64Coder.encodeString(password));
         session.save(employee);
@@ -53,16 +55,13 @@ public class SignUpController {
         
         String token = Jwts.builder()
           .setClaims(claims)
-          .setIssuer("create user id")
+          .setIssuer(id)
           .signWith(SignatureAlgorithm.HS256, Base64Coder.encodeString(password))
         .compact();
-
-        JSONObject json = new JSONObject();
-        json.put("id", employee.getId());
-        json.put("name", name);
-        json.put("authorization", token);
         
-        return json.toString();
+        response.addHeader("name", name);
+        response.addHeader("id", employee.getId());
+        response.addHeader("authorization", token);
     }
 
 }
