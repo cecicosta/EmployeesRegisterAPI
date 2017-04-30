@@ -1,4 +1,4 @@
-package com.hib.init;
+package com.register.api.persistence;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,8 +10,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import com.hib.entities.Employee;
-import com.hib.entities.HourRegister;
+import com.register.api.entities.Employee;
+import com.register.api.entities.HourRegister;
 
 public class DataAccessHelper {
 	

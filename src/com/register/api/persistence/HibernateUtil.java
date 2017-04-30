@@ -1,4 +1,4 @@
-package com.hib.init;
+package com.register.api.persistence;
 
 
 import org.hibernate.SessionFactory;

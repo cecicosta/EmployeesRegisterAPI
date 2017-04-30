@@ -1,7 +1,6 @@
 Instructions of how to use this API.
 By Cesar Costa.
 
-
 ---- Cadastro de usuário ----
 
 URL: /signup
@@ -30,8 +29,8 @@ URL: /employee
 send:
 HTTP Request GET
 
-  2. Registro de horas:
-+ 2.1. Listar todos os registros de horas de um determinado usuário.
+---- Listar todos os registros de horas de um determinado usuário ----
+
 URL: /employee/registers
 send:
 HTTP Request GET

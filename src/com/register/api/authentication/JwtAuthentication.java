@@ -1,8 +1,8 @@
-package com.authentication.jwt;
+package com.register.api.authentication;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.hib.init.DataAccessHelper;
+import com.register.api.persistence.DataAccessHelper;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Header;

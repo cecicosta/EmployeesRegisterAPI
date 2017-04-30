@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.authentication.jwt.JwtAuthentication;
-import com.hib.entities.Employee;
-import com.hib.entities.HourRegister;
-import com.hib.init.DataAccessHelper;
+import com.register.api.authentication.JwtAuthentication;
+import com.register.api.entities.Employee;
+import com.register.api.entities.HourRegister;
+import com.register.api.persistence.DataAccessHelper;
 
 import io.jsonwebtoken.Claims;
 

@@ -1,4 +1,4 @@
-package com.hib.entities;
+package com.register.api.entities;
 
 import javax.persistence.OneToMany;
 
