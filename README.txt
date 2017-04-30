@@ -1,8 +1,7 @@
 Instructions of how to use this API.
 By Cesar Costa.
 
-
----- Cadastro de usu·rio ----
+---- Cadastro de usu√°rio ----
 
 URL: /signup
 
@@ -24,14 +23,14 @@ erros:
 Id already exists
 Missing fields
 
----- Listar todos os usu·rios ----
+---- Listar todos os usu√°rios ----
 
 URL: /employee
 send:
 HTTP Request GET
 
-  2. Registro de horas:
-+ 2.1. Listar todos os registros de horas de um determinado usu·rio.
+---- Listar todos os registros de horas de um determinado usu√°rio ----
+
 URL: /employee/registers
 send:
 HTTP Request GET
