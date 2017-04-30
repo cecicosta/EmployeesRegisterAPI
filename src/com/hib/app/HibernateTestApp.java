@@ -24,6 +24,7 @@ public class HibernateTestApp
         Employee emp =  (Employee) session.get(Employee.class, "00001");
         HourRegister reg = (HourRegister) emp.getRegisters().toArray()[0];
         System.out.println(reg.getTime().toString());
+        session.close();
         /*
         session.beginTransaction();
         Employee employee = new Employee("00001", "Ceci", "123456");

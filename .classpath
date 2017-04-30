@@ -50,6 +50,7 @@
   <classpathentry kind="var" path="M2_REPO/org/skyscreamer/jsonassert/1.4.0/jsonassert-1.4.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/spring-test/4.3.7.RELEASE/spring-test-4.3.7.RELEASE.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/json/json/20140107/json-20140107.jar"/>
   <classpathentry kind="var" path="M2_REPO/io/jsonwebtoken/jjwt/0.7.0/jjwt-0.7.0.jar" sourcepath="M2_REPO/io/jsonwebtoken/jjwt/0.7.0/jjwt-0.7.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate-core/4.2.7.SP1/hibernate-core-4.2.7.SP1.jar"/>
   <classpathentry kind="var" path="M2_REPO/antlr/antlr/2.7.7/antlr-2.7.7.jar"/>

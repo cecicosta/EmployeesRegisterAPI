@@ -25,6 +25,12 @@
         <artifactId>json-path</artifactId>
         <scope>test</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.json/json -->
+	<dependency>
+	    <groupId>org.json</groupId>
+	    <artifactId>json</artifactId>
+	</dependency>
+	    
   
 	<dependency>
 		<groupId>io.jsonwebtoken</groupId>
@@ -40,7 +46,7 @@
 	<dependency>
 	    <groupId>mysql</groupId>
 	    <artifactId>mysql-connector-java</artifactId>
-	    </dependency>
+    </dependency>
   </dependencies>
   
   <build>
