@@ -5,9 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan(basePackageClasses = com.authentication.jwt.SignUpController.class)
+@ComponentScan(basePackageClasses = com.register.api.submit.SubmitRegisterController.class)
 @ComponentScan(basePackageClasses = com.access.data.EmployeesAccessController.class)
 @ComponentScan(basePackageClasses = com.access.data.EmployeeRegistersAccessController.class)
-@ComponentScan(basePackageClasses = com.authentication.jwt.LoginController.class)
 @ComponentScan(basePackageClasses = hello.Greeting.class)
 public class Application {
 

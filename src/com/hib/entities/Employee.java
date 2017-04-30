@@ -9,6 +9,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 @Entity
 @Table(name = "employees")
 public class Employee {
@@ -51,5 +54,12 @@ public class Employee {
 	}
 	public void setRegisters(Set<HourRegister> registers){
 		this.registers = registers;
+	}
+	
+	public JSONObject toJson() throws JSONException{
+		JSONObject json = new JSONObject();
+		json.put("id", getId()); 
+        json.put("name", getName());
+        return json;
 	}
 }
