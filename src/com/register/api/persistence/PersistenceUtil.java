@@ -30,8 +30,8 @@ public class PersistenceUtil {
     public static SessionFactory getEventSessionFactory() {
     	Configuration config = new Configuration();
     	config.configure("/hibernate-event-repository.cfg.xml");
-    	config.addAnnotatedClass(SignUpEmployeeHandler.class); // mapped classes
-    	config.addAnnotatedClass(CreateRegisterHandler.class);
+    	config.addAnnotatedClass(SnapshotRegister.class); // mapped classes
+    	config.addAnnotatedClass(EventData.class);
     	
         return buildSessionFactory(config);
     }

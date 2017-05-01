@@ -13,9 +13,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.google.gson.Gson;
 @Entity
 @Table(name = "registers")

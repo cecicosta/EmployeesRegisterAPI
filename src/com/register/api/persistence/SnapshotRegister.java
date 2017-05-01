@@ -1,24 +1,29 @@
 package com.register.api.persistence;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="snapshopregister")
-public class SnapshopRegister {
+@Table(name="snapshotregister")
+public class SnapshotRegister {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String status;
 	private long timestamp;
-	private EventData eventData;
+	private Integer eventDataId;
+	public SnapshotRegister(){}
+	public SnapshotRegister(long timestamp, String status, Integer eventDataId) {
+		setTimestamp(timestamp);
+		setStatus(status);
+		setEventDataId(eventDataId);
+	}
+	@Id
+	@Column(name="snapshopRegisterId")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getId() {
 		return id;
 	}
@@ -37,13 +42,11 @@ public class SnapshopRegister {
 	public void setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 	}
-	@OneToOne
-	@JoinColumn(name = "eventDataId")
-	public EventData getEventData() {
-		return eventData;
+	public Integer getEventDataId() {
+		return eventDataId;
 	}
-	public void setEventData(EventData eventData) {
-		this.eventData = eventData;
+	public void setEventDataId(Integer eventDataId) {
+		this.eventDataId = eventDataId;
 	}
 
 }

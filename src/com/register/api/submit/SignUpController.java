@@ -1,4 +1,4 @@
-package com.register.api.authentication;
+package com.register.api.submit;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.register.api.commands.SignUpEmployeeCommand;
 import com.register.api.entities.Employee;
-import com.register.api.persistence.DataAccessHelper;
+import com.register.api.queries.QueryEmployeeRegistersAccess;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -47,12 +48,10 @@ public class SignUpController {
         .compact();
         
         Employee employee = new Employee(id, name, Base64.encodeBase64String(password.getBytes()));
-        try{
-        DataAccessHelper.registerNewEmployee(employee);
-        }catch (Exception ex){
-        	response.addHeader("description", "Id may be already registered.");
-        	throw ex;
-        }
+   
+    	SignUpEmployeeCommand cmd = new SignUpEmployeeCommand(employee);
+    	cmd.issue();
+  
         response.addHeader("name", name);
         response.addHeader("id", employee.getEmployeeId());
         response.addHeader("authorization", token);

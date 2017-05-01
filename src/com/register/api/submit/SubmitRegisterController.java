@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.register.api.authentication.JwtAuthentication;
+import com.register.api.commands.CreateRegisterCommand;
 import com.register.api.entities.Employee;
 import com.register.api.entities.HourRegister;
-import com.register.api.persistence.DataAccessHelper;
+import com.register.api.queries.QueryEmployeeRegistersAccess;
 
 import io.jsonwebtoken.Claims;
 
@@ -35,7 +36,7 @@ public class SubmitRegisterController {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Employee employee = null;
 		try{
-			employee = DataAccessHelper.getEmployeeByCode(claims.getIssuer());
+			employee = QueryEmployeeRegistersAccess.getEmployeeByCode(claims.getIssuer());
 		}catch(Exception ex){
     		response.addHeader("description", ex.getMessage());
     		throw ex;
@@ -43,10 +44,7 @@ public class SubmitRegisterController {
 		
 		Date date = format.parse(request.getHeader(TIME_HEADER_PARAM));
     	HourRegister register = new HourRegister(date, employee);
-    	try{
-    		DataAccessHelper.submitNewRegister(register);
-    	}catch(Exception ex){
-			throw ex;
-		}
+    	CreateRegisterCommand cmd = new CreateRegisterCommand(register);
+    	cmd.issue();
     }
 }

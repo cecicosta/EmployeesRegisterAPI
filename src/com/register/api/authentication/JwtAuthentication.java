@@ -2,7 +2,7 @@ package com.register.api.authentication;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.register.api.persistence.DataAccessHelper;
+import com.register.api.queries.QueryEmployeeRegistersAccess;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Header;
@@ -31,7 +31,7 @@ public class JwtAuthentication {
    
         String token = value.substring(HEADER_PREFIX.length(), value.length());
         try {
-        	key = DataAccessHelper.getEmployeeEncryptedPass(id);
+        	key = QueryEmployeeRegistersAccess.getEmployeeEncryptedPass(id);
         	claims = Jwts.parser().setSigningKey(key).parseClaimsJws(token);
         } catch (UnsupportedJwtException | MalformedJwtException | IllegalArgumentException | SignatureException ex) {
             throw new Exception("Invalid JWT token: ", ex);

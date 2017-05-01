@@ -16,7 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.google.gson.Gson;
-import com.register.api.persistence.DataAccessHelper;
+import com.register.api.queries.QueryEmployeeRegistersAccess;
 @Entity
 @Table(name = "employees")
 public class Employee {

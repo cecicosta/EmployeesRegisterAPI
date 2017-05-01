@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.register.api.entities.Employee;
-import com.register.api.persistence.DataAccessHelper;
+import com.register.api.queries.QueryEmployeeRegistersAccess;
 
 @RestController
 public class EmployeesAccessController {
 	@RequestMapping(value="/employee", method=RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody String employees(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	 	
-	Iterator<Employee> employeeIterator = DataAccessHelper.getEmployees().iterator();
+	Iterator<Employee> employeeIterator = QueryEmployeeRegistersAccess.getEmployees().iterator();
 	
 	String responseBody = "[";
 	while(employeeIterator.hasNext()){

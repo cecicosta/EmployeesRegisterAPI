@@ -15,6 +15,7 @@ public class EventData {
 	private String eventData;
 	private String handlerType;
 	private long timestamp;
+	public EventData(){}
 	public EventData(String eventData, String handlerType) {
 		setEventData(eventData);
 		setHandlerType(handlerType);

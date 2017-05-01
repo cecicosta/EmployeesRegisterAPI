@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.register.api.entities.HourRegister;
-import com.register.api.persistence.DataAccessHelper;
+import com.register.api.queries.QueryEmployeeRegistersAccess;
 
 @RestController
 public class EmployeeRegistersAccessController {
@@ -23,7 +23,7 @@ public static String ID_HEADER_PARAM = "id";
 		
 		Iterator<HourRegister> registerIterator = null;
 		try{
-			registerIterator = DataAccessHelper.getEmployeeRegisters(id).iterator();
+			registerIterator = QueryEmployeeRegistersAccess.getEmployeeRegisters(id).iterator();
 		}catch(Exception ex){
 			response.addHeader("description", ex.getMessage());
 			throw ex;
