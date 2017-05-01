@@ -39,7 +39,7 @@ public class EventStorage {
 	public static List<EventData> getAllEventDataOfIdGt(Integer id) throws Exception{
 		Session session = PersistenceUtil.getEventSessionFactory().openSession();
 		List<EventData> events = (List<EventData>) session.createCriteria(EventData.class).
-				add(Restrictions.gt("eventDataId", id)).list();
+				add(Restrictions.gt("id", id)).list();
 		session.close();
 		if(events == null)
 			throw new Exception("no events found.");

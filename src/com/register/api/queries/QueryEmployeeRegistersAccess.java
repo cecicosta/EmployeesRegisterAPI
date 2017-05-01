@@ -47,7 +47,8 @@ public class QueryEmployeeRegistersAccess {
 	
 	public static List<HourRegister> getEmployeeRegisters(String id) throws Exception{
 		Session session = PersistenceUtil.getCommandSessionFactory().openSession();
-		Employee emp =  (Employee) session.get(Employee.class, id);
+		Employee emp = (Employee) session.createCriteria(Employee.class).
+				add(Restrictions.eq("employeeId", id)).uniqueResult();	
 		if(emp == null)
 			throw new Exception("Id not found");
 		Iterator<HourRegister> iterator = emp.getRegisters().iterator();

@@ -24,7 +24,7 @@ public class EmployeesAccessController {
 	String responseBody = "[";
 	while(employeeIterator.hasNext()){
 		Employee employee = employeeIterator.next();;
-		responseBody += employee.toJson().toString();
+		responseBody += employee.toJson();
 		responseBody += employeeIterator.hasNext()? ",": "]";
 	}
 		return responseBody;

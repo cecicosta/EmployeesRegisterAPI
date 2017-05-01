@@ -1,5 +1,6 @@
 package com.register.api.persistence;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,8 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "eventdata")
 public class EventData {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private int id;
 	private String eventData;
 	private String handlerType;
@@ -20,6 +20,10 @@ public class EventData {
 		setEventData(eventData);
 		setHandlerType(handlerType);
 	}
+	
+	@Id
+	@Column(name="eventDataId")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getId() {
 		return id;
 	}

@@ -7,8 +7,6 @@ import org.hibernate.service.ServiceRegistryBuilder;
 
 import com.register.api.entities.Employee;
 import com.register.api.entities.HourRegister;
-import com.register.api.events.CreateRegisterHandler;
-import com.register.api.events.SignUpEmployeeHandler;
 public class PersistenceUtil {
 
     private static SessionFactory sessionFactory;
@@ -38,7 +36,7 @@ public class PersistenceUtil {
     
     public static SessionFactory getCommandSessionFactory() {
     	Configuration config = new Configuration();
-    	config.configure("/hibernate-event-repository.cfg.xml");
+    	config.configure("/hibernate-business-model.cfg.xml");
     	config.addAnnotatedClass(Employee.class); // mapped classes
     	config.addAnnotatedClass(HourRegister.class);
     	

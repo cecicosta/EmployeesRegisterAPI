@@ -26,7 +26,6 @@ public class CreateRegisterHandler implements EventHandler{
 		}finally{
 			if(!trans.wasCommitted()){
 				trans.rollback();
-				session.flush();
 				session.close();
 				throw new Exception("Failed to save entity on database.");
 			}

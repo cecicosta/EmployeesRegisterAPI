@@ -5,9 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.register.api.queries.QueryEmployeeRegistersAccess;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;

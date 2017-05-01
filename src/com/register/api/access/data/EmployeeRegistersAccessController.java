@@ -32,7 +32,7 @@ public static String ID_HEADER_PARAM = "id";
 		String responseBody = "[";
 		while(registerIterator.hasNext()){
 			HourRegister register = registerIterator.next();
-			responseBody += register.toJson().toString();
+			responseBody += register.toJson();
 			responseBody += registerIterator.hasNext()? ",": "]";
 		}
 		

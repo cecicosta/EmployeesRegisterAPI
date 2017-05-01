@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.register.api.commands.SignUpEmployeeCommand;
 import com.register.api.entities.Employee;
+import com.register.api.events.CommandListener;
 import com.register.api.queries.QueryEmployeeRegistersAccess;
 
 import io.jsonwebtoken.Claims;
@@ -40,7 +41,7 @@ public class SignUpController {
         if (password == null || password.isEmpty()) 
             throw new Exception("Missing header: " + PASSWORD_HEADER_PARAM);
 
-        Claims claims = Jwts.claims().setSubject(name);        
+        Claims claims = Jwts.claims().setSubject(name); 
         String token = Jwts.builder()
           .setClaims(claims)
           .setIssuer(id)
@@ -50,6 +51,7 @@ public class SignUpController {
         Employee employee = new Employee(id, name, Base64.encodeBase64String(password.getBytes()));
    
     	SignUpEmployeeCommand cmd = new SignUpEmployeeCommand(employee);
+    	cmd.addListener(new CommandListener());
     	cmd.issue();
   
         response.addHeader("name", name);
