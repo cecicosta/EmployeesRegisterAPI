@@ -54,7 +54,7 @@ public class SignUpController {
         	throw ex;
         }
         response.addHeader("name", name);
-        response.addHeader("id", employee.getId());
+        response.addHeader("id", employee.getEmployeeId());
         response.addHeader("authorization", token);
     }
 

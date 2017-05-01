@@ -7,14 +7,10 @@
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">123456</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/employeesregister</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/eventrepository</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
         <property name="mysql">true</property> 
-        <property name="connection.pool_size">10</property> 
-                 
-        <mapping class="com.register.api.entities.Employee"></mapping>
-        <mapping class="com.register.api.entities.HourRegister"></mapping>
-        
-        
+        <property name="connection.pool_size">10</property>
+ 
     </session-factory>
 </hibernate-configuration>

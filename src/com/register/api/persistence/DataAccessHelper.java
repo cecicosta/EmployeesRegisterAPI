@@ -15,9 +15,10 @@ import com.register.api.entities.HourRegister;
 
 public class DataAccessHelper {
 	
-	public static Employee getEmployee(String id) throws Exception{
+	public static Employee getEmployeeByCode(String id) throws Exception{
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Employee e = (Employee) session.get(Employee.class, id);		
+		Employee e = (Employee) session.createCriteria(Employee.class).
+				add(Restrictions.eq("employeeId", id)).uniqueResult();		
 		session.close();
 		if(e == null)
 			throw new Exception("Id not found.");
@@ -42,7 +43,7 @@ public class DataAccessHelper {
 		return new String(Base64.decodeBase64(getEmployeeEncryptedPass(id)));
 	}
 	public static String getEmployeeEncryptedPass(String id) throws Exception{
-		return getEmployee(id).getEncryptedPass();
+		return getEmployeeByCode(id).getEncryptedPass();
 	}
 	
 	public static void registerNewEmployee(Employee employee)throws Exception {

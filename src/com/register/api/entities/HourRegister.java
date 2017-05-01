@@ -15,11 +15,11 @@ import javax.persistence.TemporalType;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.google.gson.Gson;
 @Entity
 @Table(name = "registers")
 public class HourRegister {
-
-	
 	private Integer id;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date time;
@@ -57,11 +57,9 @@ public class HourRegister {
 		this.employee = employee;
 	}
 	
-	public JSONObject toJson() throws JSONException{
-		JSONObject json = new JSONObject();
-		json.put("id", getId()); 
-        json.put("date", getTime().toString());
-        json.put("employeeId", employee.getId());
+	public String toJson(){
+		Gson gson = new Gson();
+		String json = gson.toJson(this);
         return json;
 	}
 }

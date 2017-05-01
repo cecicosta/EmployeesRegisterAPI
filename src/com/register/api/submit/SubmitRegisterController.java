@@ -35,7 +35,7 @@ public class SubmitRegisterController {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Employee employee = null;
 		try{
-			employee = DataAccessHelper.getEmployee(claims.getIssuer());
+			employee = DataAccessHelper.getEmployeeByCode(claims.getIssuer());
 		}catch(Exception ex){
     		response.addHeader("description", ex.getMessage());
     		throw ex;
