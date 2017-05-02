@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.register.api.authentication.JwtAuthentication;
+import com.register.api.commands.CommandListener;
 import com.register.api.commands.CreateRegisterCommand;
 import com.register.api.entities.Employee;
 import com.register.api.entities.HourRegister;
-import com.register.api.events.CommandListener;
 import com.register.api.queries.QueryEmployeeRegistersAccess;
 
 import io.jsonwebtoken.Claims;

@@ -1,12 +1,12 @@
-package com.register.api.events;
+package com.register.api.commands;
 
 import java.util.List;
 import java.util.concurrent.Semaphore;
 
 import com.google.gson.Gson;
-import com.register.api.commands.Command;
-import com.register.api.commands.CreateRegisterCommand;
-import com.register.api.commands.SignUpEmployeeCommand;
+import com.register.api.events.CreateRegisterHandler;
+import com.register.api.events.EventHandler;
+import com.register.api.events.SignUpEmployeeHandler;
 import com.register.api.persistence.EventStorage;
 
 public class CommandListener {

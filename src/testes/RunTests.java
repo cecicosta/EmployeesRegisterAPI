@@ -2,7 +2,7 @@ package testes;
 
 import com.google.gson.Gson;
 import com.register.api.entities.Employee;
-import com.register.api.events.CommandBus;
+import com.register.api.events.EventSourceDispatcher;
 import com.register.api.persistence.EventStorage;
 import com.register.api.persistence.SnapshotRegister;
 import com.register.api.queries.QueryEmployeeRegistersAccess;

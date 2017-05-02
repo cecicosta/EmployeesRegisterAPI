@@ -12,16 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.google.gson.Gson;
-import com.register.api.queries.QueryEmployeeRegistersAccess;
 @Entity
 @Table(name = "employees")
 public class Employee {
 
-	private int id;
 	private String employeeId;
 	private String name;
 	private String encryptedPass;
@@ -34,14 +29,6 @@ public class Employee {
 	}
 	
 	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	@Column(name = "employeeId")
 	public String getEmployeeId(){
 		return employeeId;

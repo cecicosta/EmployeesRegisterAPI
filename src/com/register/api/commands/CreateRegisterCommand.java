@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import com.register.api.entities.HourRegister;
-import com.register.api.events.CommandListener;
 public class CreateRegisterCommand implements Command {
 	private ArrayList<CommandListener> listeners = new ArrayList<CommandListener>();
 	private HourRegister register;

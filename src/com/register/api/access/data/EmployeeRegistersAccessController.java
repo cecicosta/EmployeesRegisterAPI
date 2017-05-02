@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.register.api.entities.HourRegister;
+import com.register.api.events.EventSourceDispatcher;
 import com.register.api.queries.QueryEmployeeRegistersAccess;
 
 @RestController
@@ -20,6 +21,8 @@ public static String ID_HEADER_PARAM = "id";
 @RequestMapping(value="/employee/registers", method=RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody String login(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String id = request.getHeader(ID_HEADER_PARAM);
+		
+		EventSourceDispatcher.runEventSource();
 		
 		Iterator<HourRegister> registerIterator = null;
 		try{

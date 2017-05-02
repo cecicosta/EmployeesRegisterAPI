@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.register.api.commands.CommandListener;
 import com.register.api.commands.SignUpEmployeeCommand;
 import com.register.api.entities.Employee;
-import com.register.api.events.CommandListener;
 import com.register.api.queries.QueryEmployeeRegistersAccess;
 
 import io.jsonwebtoken.Claims;

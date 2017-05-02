@@ -23,13 +23,11 @@ DROP TABLE IF EXISTS `employees`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `employees` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
   `employeeId` varchar(20) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
   `encryptedPass` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `employeeId_UNIQUE` (`employeeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`employeeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,8 +36,35 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
-INSERT INTO `employees` VALUES (65,'00016','Regina','MTIzNDU=');
+INSERT INTO `employees` VALUES ('00001','Ceci','MTIzNDU='),('00016','Sara','MTIzNDU=');
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `registers`
+--
+
+DROP TABLE IF EXISTS `registers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `registers` (
+  `registerId` int(11) NOT NULL AUTO_INCREMENT,
+  `time` datetime NOT NULL,
+  `employeeId` varchar(20) NOT NULL,
+  PRIMARY KEY (`registerId`),
+  KEY `employeeId_idx` (`employeeId`),
+  CONSTRAINT `employeeId` FOREIGN KEY (`employeeId`) REFERENCES `employees` (`employeeId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `registers`
+--
+
+LOCK TABLES `registers` WRITE;
+/*!40000 ALTER TABLE `registers` DISABLE KEYS */;
+INSERT INTO `registers` VALUES (3,'2017-04-29 00:00:00','00016'),(4,'2017-04-29 10:00:00','00016'),(5,'2017-05-29 10:00:00','00016'),(8,'2017-05-29 11:00:00','00016'),(10,'2017-10-10 18:32:02','00016'),(11,'2016-10-10 18:32:02','00001'),(12,'2016-10-10 23:32:02','00001');
+/*!40000 ALTER TABLE `registers` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +76,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-01 10:28:33
+-- Dump completed on 2017-05-02  1:34:15
