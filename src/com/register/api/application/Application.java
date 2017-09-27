@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan(basePackageClasses = com.register.api.access.data.StreamFrameReceiver.class)
 @ComponentScan(basePackageClasses = com.register.api.submit.SignUpController.class)
 @ComponentScan(basePackageClasses = com.register.api.submit.SubmitRegisterController.class)
 @ComponentScan(basePackageClasses = com.register.api.access.data.EmployeesAccessController.class)
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
 public class Application {
 
     public static void main(String[] args) {
+    	
         SpringApplication.run(Application.class, args);
     }
 }
