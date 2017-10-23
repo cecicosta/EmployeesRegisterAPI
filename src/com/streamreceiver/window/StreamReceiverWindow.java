@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.ComponentColorModel;
@@ -23,16 +25,27 @@ import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteOrder;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
+import javax.imageio.stream.IIOByteBuffer;
+import javax.imageio.stream.ImageOutputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import org.apache.tomcat.jni.Time;
+
+import com.stream.encoder.movie.JpegImagesToMovie;
 
 
-public class StreamReceiverWindow  extends Frame implements WindowListener, ActionListener, Runnable{
+public class StreamReceiverWindow  extends Frame implements  ActionListener, Runnable{
 
 	/**
 	 * 
@@ -52,15 +65,28 @@ public class StreamReceiverWindow  extends Frame implements WindowListener, Acti
 	private Thread thread;
 	
 	private JLabel jlabel;
+
+	private boolean wasClosed;
+	
+	private int frameCount = 0;
 	
 	private StreamReceiverWindow() {
 
     
 //		
-//		super("Stream Receiver");
+		super("Stream Receiver");
 //		
-//		addWindowListener(this);
-//		addNotify();
+		
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		        System.out.println("fechando");
+		        setWasClosed(true);
+		    }
+		});
+		
+		//addWindowListener(this);
+		//addNotify();
 //		
 //		menu = new MenuBar();
 //		ajuda = new Menu("Ajuda");
@@ -114,11 +140,14 @@ public class StreamReceiverWindow  extends Frame implements WindowListener, Acti
 	
 	public void ConvertRawToPng(byte[] data) {
 		// You need to know width/height of the image
-		int width = 1280;
-		int height = 720;
+		
+        float aspect = (640f/360f);
+		
+		int width = (int) (640f / 2f);
+		int height = (int) (360f / aspect);
 
 		int samplesPerPixel = 3;
-		int[] bandOffsets = {2, 1, 0}; // BGRA order
+		int[] bandOffsets = {0, 1, 2}; // BGRA order
 
 		DataBuffer buffer = new DataBufferByte(data, data.length);
 		WritableRaster raster = Raster.createInterleavedRaster(buffer, width, height, samplesPerPixel * width, samplesPerPixel, bandOffsets, null);
@@ -126,21 +155,22 @@ public class StreamReceiverWindow  extends Frame implements WindowListener, Acti
 		ColorModel colorModel = new ComponentColorModel(ColorSpace.getInstance(ColorSpace.CS_sRGB), false, false, Transparency.OPAQUE, DataBuffer.TYPE_BYTE);
 
 		BufferedImage image = new BufferedImage(colorModel, raster, colorModel.isAlphaPremultiplied(), null);
-
 		//System.out.println("image: " + image); // Should print: image: BufferedImage@<hash>: type = 0 ...
 
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		try {
-			ImageIO.write(image, "PNG", output);
+			ImageIO.write(image, "JPEG", output);
+			ImageIO.write(image, "JPEG", new FileOutputStream("tmp\\frame" + frameCount++ + ".jpeg", false));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		try {
-			this.image = ImageIO.read(new ByteArrayInputStream(output.toByteArray()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
+		//Fix the problem of the texture upside down
+		AffineTransform tx;
+		tx = AffineTransform.getScaleInstance(1, -1);
+		tx.translate(0, -image.getHeight(null));
+		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+		this.image = op.filter(image, null);
 
 	}
 	
@@ -174,46 +204,11 @@ public class StreamReceiverWindow  extends Frame implements WindowListener, Acti
 		
 	}
 
-	@Override
-	public void windowActivated(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public boolean WasClosed() {
+		return wasClosed;
 	}
 
-	@Override
-	public void windowClosed(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void setWasClosed(boolean wasClosed) {
+		this.wasClosed = wasClosed;
 	}
-
-	@Override
-	public void windowClosing(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowDeactivated(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowDeiconified(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowIconified(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowOpened(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

@@ -5,8 +5,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.time.LocalDateTime;
 import java.util.concurrent.Semaphore;
 
+import com.stream.encoder.movie.JpegImagesToMovie;
 import com.streamreceiver.window.StreamReceiverWindow;
 
 public class StreamServer {
@@ -17,27 +19,16 @@ public class StreamServer {
 			@Override
 			public void run() {
 				try {
-					StreamServer server = new StreamServer();
+					StreamServer server = null;
+					
+						server = new StreamServer();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}).start();
-		
-		
-		new Thread(new Runnable(){
-			@Override
-			public void run() {
-				try {
-					StreamClient client = new StreamClient();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}).start();
-		
+			
 	}
 	
 	public StreamServer() throws IOException {
@@ -66,8 +57,6 @@ public class StreamServer {
 				boolean firstFrame = true;
 				while(true)
 					try {	
-						
-						semaphore.acquire();
 						
 						int bytesRead = 0;
 						bytesRead = reader.read(body);
@@ -106,23 +95,34 @@ public class StreamServer {
 						msg = "ALL_BYTES_RECEIVED";
 						writer.write(msg.getBytes());
 						
-						semaphore.release();
+						if(receiver.WasClosed()) {
+							break;
+						}
 						
 					} catch (Exception e) {
+						try {
+							JpegImagesToMovie.CreateVideoFile(LocalDateTime.now().toString());
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						e.printStackTrace();
+						break;
 					}
+				
+				try {
+					client.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}).start();
 	}
 	
-	private static byte[] body = new byte[2048];
+	private byte[] body = new byte[2048];
 	private ServerSocket socket;
 	
-	public static Semaphore semaphore = new Semaphore(1);
-	
-	public static byte[] GetCurrentFrameBytes() {
-		   return body;
-	}
 }
 
 

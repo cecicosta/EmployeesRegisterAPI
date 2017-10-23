@@ -60,5 +60,10 @@
 	<classpathentry kind="var" path="M2_REPO/mysql/mysql-connector-java/5.1.41/mysql-connector-java-5.1.41.jar" sourcepath="M2_REPO/mysql/mysql-connector-java/5.1.41/mysql-connector-java-5.1.41-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/google/code/gson/gson/2.0/gson-2.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/JMF2.1.1e/lib/customizer.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/JMF2.1.1e/lib/jmf.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/JMF2.1.1e/lib/mediaplayer.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/JMF2.1.1e/lib/multiplayer.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/JMF2.1.1e/lib/sound.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
