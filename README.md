@@ -1,5 +1,5 @@
 Instructions of how to use this API.
-By Cecília Costa.
+By Cecï¿½lia Costa.
 
 For testing, the application was run on the localhost and the Http request were send using Postman.
 
@@ -13,7 +13,7 @@ When a command that would cause a write operation to the data base is issued, a 
 When a read only operation is requested by the user, the EventSourceDispatcher is them run to update the database with all events stored since the last
 snapshot registered from the database (the last time when it had a consistent state).
 
-OBS: Os arquivos *.sql no diretorio raiz, devem ser utilizados para recriar os models com os quais a aplicação irá interagir.
+OBS: Os arquivos *.sql no diretorio raiz, devem ser utilizados para recriar os models com os quais a aplicaï¿½ï¿½o irï¿½ interagir.
 
 ---- Sign Up new employee ----
 
