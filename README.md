@@ -3,7 +3,10 @@
 For testing, the application was run on the localhost and the Http request were send using Postman.
 
 To run this application, issue the command from the root directory (where the pom.xml file is located): 
+
+```
 mvn sprint:boot:run
+```
 
 ### About this implementation: ###
 It uses the pattern CQRS with event source.
@@ -34,8 +37,8 @@ id: {User Name}
 name: {User ID}
 
 Otherwise, erros:
-Id already exists
-Missing fields
+* Id already exists
+* Missing fields
 
 ---- List all employees ----
 
@@ -59,7 +62,7 @@ body:
 Multiple Json objects
 
 Otherwise, erros:
-id not found
+* id not found
 
 ---- Create a new time register for a specific employee----
 
@@ -76,6 +79,6 @@ If succeeds, receive:
 HTTP Response with no erros
 
 otherwise, erros:
-Id not found
-Missing headers
-Invalid token
+* Id not found
+* Missing headers
+* Invalid token
