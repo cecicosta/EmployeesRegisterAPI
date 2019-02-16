@@ -17,7 +17,7 @@ snapshot registered from the database (the last time when it had a consistent st
 
 OBS: The files *.sql in the root directory should be used to recriate the database models.
 
----- Sign Up new employee ----
+#### Sign Up new employee ####
 
 URL: /signup
 
@@ -37,17 +37,18 @@ id: {User Name}
 name: {User ID}
 
 Otherwise, erros:
+
 * Id already exists
 * Missing fields
 
----- List all employees ----
+#### List all employees ####
 
 URL: /employee
 
 send:
 HTTP GET
 
----- List all register from a specific employee ----
+#### List all register from a specific employee ####
 
 URL: /employee/registers
 
@@ -62,9 +63,10 @@ body:
 Multiple Json objects
 
 Otherwise, erros:
+
 * id not found
 
----- Create a new time register for a specific employee----
+#### Create a new time register for a specific employee ####
 
 URL: /register/submit
 
@@ -79,6 +81,7 @@ If succeeds, receive:
 HTTP Response with no erros
 
 otherwise, erros:
+
 * Id not found
 * Missing headers
 * Invalid token
