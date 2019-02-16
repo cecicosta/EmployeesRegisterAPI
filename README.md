@@ -1,19 +1,18 @@
-Instructions of how to use this API.
-By Cec�lia Costa.
+### Instructions on how to use this API. ##
 
 For testing, the application was run on the localhost and the Http request were send using Postman.
 
 To run this application, issue the command from the root directory (where the pom.xml file is located): 
 mvn sprint:boot:run
 
-About this implementation:
+### About this implementation: ###
 It uses the pattern CQRS with event source.
 When a command that would cause a write operation to the data base is issued, a event will be stored with all necessary information about the command.
 
 When a read only operation is requested by the user, the EventSourceDispatcher is them run to update the database with all events stored since the last
 snapshot registered from the database (the last time when it had a consistent state).
 
-OBS: Os arquivos *.sql no diretorio raiz, devem ser utilizados para recriar os models com os quais a aplica��o ir� interagir.
+OBS: The files *.sql in the root directory should be used to recriate the database models.
 
 ---- Sign Up new employee ----
 
