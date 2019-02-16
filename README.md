@@ -9,7 +9,8 @@ mvn sprint:boot:run
 ```
 
 ### About this implementation: ###
-It uses the pattern CQRS with event source.
+Uses Jwt authentication.
+Uses the pattern CQRS with event source.
 When a command that would cause a write operation to the data base is issued, a event will be stored with all necessary information about the command.
 
 When a read only operation is requested by the user, the EventSourceDispatcher is them run to update the database with all events stored since the last
